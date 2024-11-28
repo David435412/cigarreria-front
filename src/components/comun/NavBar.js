@@ -19,7 +19,7 @@ const Header = () => {
                         <img src={Logo} alt="CigarreriaC - Logo" className="w-56 h-auto" />
                     </Link>
                     <div className="flex items-center lg:order-2 space-x-2">
-                    <a href = "/login" className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 transition duration-300">Inicia Sesión</a>
+                        <Link to = "/login" className="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-4 py-2 transition duration-300">Inicia Sesión</Link>
                     </div>
                     {/* Icono de hamburguesa */}
                     <div className="lg:hidden flex items-center z-50">
