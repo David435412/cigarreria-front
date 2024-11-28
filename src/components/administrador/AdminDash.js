@@ -22,7 +22,7 @@ const AdminDashboard = () => {
         const fetchProducts = async () => {
             try {
                 // Consulta a la API de json-server
-                const response = await axios.get('http://localhost:5000/productos/consulta');
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/productos/consulta`);
                 const products = response.data;
 
                 // Filtra los productos con cantidad menor a 20

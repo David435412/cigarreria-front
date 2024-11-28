@@ -32,7 +32,7 @@ const DomiciliarioDashboard = () => {
 
         const fetchPedidos = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/pedidos/asignados/${userId}`);
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/pedidos/asignados/${userId}`);
                 setPedidos(response.data);
             } catch (error) {
                 console.error('Error al obtener los pedidos:', error);
@@ -122,7 +122,7 @@ const DomiciliarioDashboard = () => {
     
         try {
             // Actualizar el estado del pedido en el servidor
-            const response = await axios.patch(`http://localhost:5000/pedidos/estadoPedido/${pedidoAConfirmar._id}`, {
+            const response = await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/pedidos/estadoPedido/${pedidoAConfirmar._id}`, {
                 estadoPedido: 'entregado'
             });
     

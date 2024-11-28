@@ -15,7 +15,7 @@ const UsuariosInactivos = () => {
     // Obtener los usuarios inactivos desde la API
     const fetchUsuariosInactivos = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/usuarios');
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/usuarios`);
             const usuariosInactivos = response.data.filter(usuario =>
                 (usuario.rol === 'cajero' || usuario.rol === 'domiciliario') && usuario.estado === 'inactivo'
             );
@@ -32,7 +32,7 @@ const UsuariosInactivos = () => {
 
     const handleActivate = async (usuario) => {
         try {
-            await axios.put(`http://localhost:5000/usuarios/${usuario.id}`, { ...usuario, estado: 'activo' });
+            await axios.put(`${process.env.REACT_APP_BACKEND_URL}/usuarios/${usuario.id}`, { ...usuario, estado: 'activo' });
             fetchUsuariosInactivos();
             setAlertMessage('Usuario activado exitosamente.');
         } catch (error) {

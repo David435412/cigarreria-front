@@ -20,7 +20,7 @@ const CajeroDashboard = () => {
         // Función para obtener productos con stock bajo y productos agotados
         const fetchProducts = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/productos');
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/productos`);
                 const products = response.data;
 
                 // Leer productos agotados previamente notificados
@@ -75,7 +75,7 @@ const CajeroDashboard = () => {
 
     const enviarCorreoRoles = async (productosAgotados) => {
         try {
-            const { data: usuarios } = await axios.get('http://localhost:5000/usuarios?rol=administrador');
+            const { data: usuarios } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/usuarios?rol=administrador`);
             
             await Promise.all(usuarios.map(usuario => {
                 return emailjs.send('service_ug49rns', 'template_ujvyb2n', {

@@ -27,7 +27,7 @@ const RecuperacionContrasena = () => {
 
         try {
             // Enviar solicitud al backend para guardar el código de recuperación
-            const response = await axios.post('http://localhost:5000/usuarios/recuperar-contrasena', { correo, codigoRecuperacion });
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/usuarios/recuperar-contrasena`, { correo, codigoRecuperacion });
 
             if (response.status === 200) {
                 // Enviar el correo con el código usando EmailJS

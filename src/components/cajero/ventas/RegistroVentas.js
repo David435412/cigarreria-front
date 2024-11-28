@@ -35,7 +35,7 @@ const RegistroVentas = () => {
 
         const fetchProductos = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/productos/consulta');
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/productos/consulta`);
                 const productosActivos = response.data.filter(producto => producto.estado === 'activo');
                 setProductos(productosActivos);
                 setFilteredProducts(productosActivos);

@@ -31,8 +31,8 @@ const ClienteDashboard = () => {
     useEffect(() => {
         const fetchDatos = async () => {
             try {
-                const { data: productosData } = await axios.get('http://localhost:5000/productos/consulta');
-                const pedidosResponse = await axios.get('http://localhost:5000/pedidos/consulta');
+                const { data: productosData } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/productos/consulta`);
+                const pedidosResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/pedidos/consulta`);
     
                 const productosActivos = productosData.filter(producto => producto.estado === 'activo');
                 setProductos(productosActivos);

@@ -40,7 +40,7 @@ const DatosEntregaCajero = () => {
     const enviarCorreoCajeros = async (pedido) => {
         try {
             // Obtener los correos y nombres de los cajeros
-            const { data: cajeros } = await axios.get('http://localhost:5000/usuarios/cajeros');
+            const { data: cajeros } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/usuarios/cajeros`);
             
             // Enviar el correo a cada cajero
             await Promise.all(cajeros.map(cajero => {
@@ -94,7 +94,7 @@ const DatosEntregaCajero = () => {
             };                
                
             try {
-                const response = await axios.post('http://localhost:5000/pedidos', pedido);
+                const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/pedidos`, pedido);
 
                 await enviarCorreoCajeros(pedido);
     

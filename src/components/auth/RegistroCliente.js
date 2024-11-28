@@ -117,7 +117,7 @@ const RegistroCliente = () => {
             contrasena: contrasenaEncriptada
         };
 
-        await axios.post('http://localhost:5000/usuarios', datosAEnviar);
+        await axios.post(`${process.env.REACT_APP_BACKEND_URL}/usuarios`, datosAEnviar);
         Swal.fire({
             position: 'center',
             icon: 'success',

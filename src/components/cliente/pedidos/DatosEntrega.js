@@ -25,7 +25,7 @@ const DatosEntrega = () => {
     
                 // Obtener direcciones del usuario desde la base de datos con async/await
                 try {
-                    const response = await axios.get(`http://localhost:5000/direcciones/consulta/?usuarioId=${usuarioId}`);
+                    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/direcciones/consulta/?usuarioId=${usuarioId}`);
                     setDirecciones(response.data);
                 } catch (error) {
                     console.error('Error al obtener direcciones:', error);
@@ -60,7 +60,7 @@ const DatosEntrega = () => {
             const usuarioId = localStorage.getItem('userId');
             if (usuarioId) {
                 try {
-                    await axios.post('http://localhost:5000/direcciones', {
+                    await axios.post(`${process.env.REACT_APP_BACKEND_URL}/direcciones`, {
                         usuarioId,
                         direccion: nuevaDireccion
                     });                
@@ -97,7 +97,7 @@ const DatosEntrega = () => {
             try {
                 const usuarioId = localStorage.getItem('userId');
                 if (usuarioId) {
-                    const response = await axios.put(`http://localhost:5000/direcciones/${_id}`, {
+                    const response = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/direcciones/${_id}`, {
                         direccion: nuevaDireccion,
                         usuarioId
                     });
@@ -126,7 +126,7 @@ const DatosEntrega = () => {
     
         if (confirmacion.isConfirmed) {
             try {
-                await axios.delete(`http://localhost:5000/direcciones/eliminar/${_id}`);
+                await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/direcciones/eliminar/${_id}`);
                 // Actualizar la lista de direcciones
                 setDirecciones(direcciones.filter(d => d._id !== _id)); // Cambia id por _id aquí
                 if (direccionSeleccionada === _id) setDireccionSeleccionada('');
@@ -140,7 +140,7 @@ const DatosEntrega = () => {
     const enviarCorreoCajeros = async (pedido) => {
         try {
             // Obtener los correos y nombres de los cajeros
-            const { data: cajeros } = await axios.get('http://localhost:5000/usuarios/cajeros');
+            const { data: cajeros } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/usuarios/cajeros`);
 
             // Enviar el correo a cada cajero
             await Promise.all(cajeros.map(cajero => {
@@ -192,7 +192,7 @@ const DatosEntrega = () => {
             };
     
             try {
-                const response = await axios.post('http://localhost:5000/pedidos', pedido);
+                const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/pedidos`, pedido);
 
                 await enviarCorreoCajeros(pedido);
     

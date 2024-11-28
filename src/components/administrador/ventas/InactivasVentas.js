@@ -16,7 +16,7 @@ const VentasInactivas = () => {
     // Obtener las ventas inactivas desde la API
     const fetchVentasInactivas = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/ventas');
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/ventas`);
             const ventasInactivas = response.data.filter(venta => venta.estado === 'inactivo');
             setVentas(ventasInactivas);
         } catch (error) {
@@ -33,13 +33,13 @@ const VentasInactivas = () => {
 
     const handleActivate = async (venta) => {
         try {
-            await axios.put(`http://localhost:5000/ventas/${venta.id}`, { ...venta, estado: 'activo' });
+            await axios.put(`${process.env.REACT_APP_BACKEND_URL}/ventas/${venta.id}`, { ...venta, estado: 'activo' });
 
             // Actualizar el inventario de productos
             await Promise.all(venta.productos.map(async (producto) => {
-                const { data: productoActual } = await axios.get(`http://localhost:5000/productos/${producto.id}`);
+                const { data: productoActual } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/productos/${producto.id}`);
                 const nuevaCantidad = productoActual.cantidad - producto.cantidad;
-                await axios.put(`http://localhost:5000/productos/${producto.id}`, {
+                await axios.put(`${process.env.REACT_APP_BACKEND_URL}/productos/${producto.id}`, {
                     ...productoActual,
                     cantidad: nuevaCantidad
                 });

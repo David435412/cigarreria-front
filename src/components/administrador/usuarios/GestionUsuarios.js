@@ -16,7 +16,7 @@ const GestionUsuarios = () => {
     // Llamada a la API para obtener los usuarios desde MongoDB
     const fetchUsuarios = useCallback(async () => {
         try {
-            const response = await axios.get('http://localhost:5000/usuarios/consulta');
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/usuarios/consulta`);
             setUsuarios(response.data);
         } catch (error) {
             console.error('Error al obtener los usuarios', error);
@@ -60,7 +60,7 @@ const GestionUsuarios = () => {
             });
 
             if (result.isConfirmed) {
-                await axios.put(`http://localhost:5000/usuarios/${usuario._id}`, { ...usuario, estado: 'inactivo' });
+                await axios.put(`${process.env.REACT_APP_BACKEND_URL}/usuarios/${usuario._id}`, { ...usuario, estado: 'inactivo' });
                 fetchUsuarios();
                 Swal.fire({
                     icon: 'success',
@@ -95,7 +95,7 @@ const GestionUsuarios = () => {
             });
 
             if (result.isConfirmed) {
-                await axios.put(`http://localhost:5000/usuarios/${usuario._id}`, { ...usuario, estado: 'activo' });
+                await axios.put(`${process.env.REACT_APP_BACKEND_URL}/usuarios/${usuario._id}`, { ...usuario, estado: 'activo' });
                 fetchUsuarios(); // Recarga los usuarios después de la reactivación
                 Swal.fire({
                     icon: 'success',

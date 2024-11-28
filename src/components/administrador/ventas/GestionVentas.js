@@ -15,7 +15,7 @@ const GestionVentas = () => {
 
     const fetchVentas = useCallback(async () => {
         try {
-            const response = await axios.get('http://localhost:5000/ventas/consulta');
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/ventas/consulta`);
             setVentas(response.data);
         } catch (error) {
             console.error('Error al obtener las ventas:', error);
@@ -62,7 +62,7 @@ const GestionVentas = () => {
             if (result.isConfirmed) {
                 try {
                     // Llamada a la ruta del backend para inactivar la venta y actualizar el stock
-                    await axios.put(`http://localhost:5000/ventas/${venta._id}/inactivar`, {
+                    await axios.put(`${process.env.REACT_APP_BACKEND_URL}/ventas/${venta._id}/inactivar`, {
                         productos: venta.productos
                     });
     

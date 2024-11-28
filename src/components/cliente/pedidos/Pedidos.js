@@ -20,7 +20,7 @@ const Pedidos = () => {
         console.log('usuarioId:', usuarioId);
 
         if (usuarioId) {
-            axios.get(`http://localhost:5000/pedidos/pedidos?usuarioId=${usuarioId}`)
+            axios.get(`${process.env.REACT_APP_BACKEND_URL}/pedidos/pedidos?usuarioId=${usuarioId}`)
             .then((response) => {
                     console.log(response.data); // Verifica los datos que recibes
                     setPedidos(response.data); // Guardar los pedidos en el estado
@@ -89,7 +89,7 @@ const Pedidos = () => {
     const cancelarPedido = async () => {
         try {
             // Cambiar el estado del pedido a "cancelado" desde el backend
-            await axios.put(`http://localhost:5000/pedidos/${pedidoACancelar._id}/cancelar`);
+            await axios.put(`${process.env.REACT_APP_BACKEND_URL}/pedidos/${pedidoACancelar._id}/cancelar`);
     
             // Actualizar la lista de pedidos localmente
             setPedidos(pedidos.map(pedido => 

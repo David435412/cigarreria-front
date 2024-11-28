@@ -25,7 +25,7 @@ const EditarUsuario = () => {
     useEffect(() => {
         const fetchUsuario = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/usuarios/${id}`);
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/usuarios/${id}`);
                 setFormData(response.data);
             } catch (error) {
                 console.error('Error al obtener el usuario', error);
@@ -45,7 +45,7 @@ const EditarUsuario = () => {
         event.preventDefault();
 
         try {
-            await axios.put(`http://localhost:5000/usuarios/${id}`, formData);
+            await axios.put(`${process.env.REACT_APP_BACKEND_URL}/usuarios/${id}`, formData);
             Swal.fire({
                 icon: 'success',
                 title: 'Usuario actualizado exitosamente',

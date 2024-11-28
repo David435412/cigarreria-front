@@ -16,7 +16,7 @@ const DetalleProducto = () => {
     useEffect(() => {
         const fetchProducto = async () => {
             try {
-                const response = await axios.get(`http://localhost:5000/productos/consulta/${id}`);
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/productos/consulta/${id}`);
                 setProducto(response.data);
                 setPrecioTotal(response.data.precio);
             } catch (error) {

@@ -65,7 +65,7 @@ const VerificarCodigo = () => {
         }
     
         try {
-            const response = await axios.get(`http://localhost:5000/usuarios/verificar-codigo?correo=${correo}&codigo=${codigo}`);
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/usuarios/verificar-codigo?correo=${correo}&codigo=${codigo}`);
     
             if (response.status === 200) {
                 setIsModalOpen(true);  // Abre el modal para restablecer la contraseña
@@ -95,7 +95,7 @@ const VerificarCodigo = () => {
     
         try {
             // Realizamos la solicitud PUT sin guardar la respuesta
-            await axios.put('http://localhost:5000/usuarios/act', {
+            await axios.put(`${process.env.REACT_APP_BACKEND_URL}/usuarios/act`, {
                 correo,  // Asegúrate de que el correo esté disponible
                 nuevaContrasena: newPassword, // Enviar la contraseña sin encriptar
             });

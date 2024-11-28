@@ -18,7 +18,7 @@ const Carrito_pedidos_cajero = ({ onClose }) => { // Añadido onClose como prop
             // Obtener la disponibilidad de productos
             const fetchDisponibilidad = async () => {
                 try {
-                    const response = await axios.get('http://localhost:5000/productos/consulta'); // O la URL que devuelva todos los productos
+                    const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/productos/consulta`); // O la URL que devuelva todos los productos
                     const productos = response.data;
                     const disponibilidad = productos.reduce((acc, producto) => {
                         acc[producto._id] = producto.cantidad;

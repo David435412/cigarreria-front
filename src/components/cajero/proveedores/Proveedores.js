@@ -15,7 +15,7 @@ const GestionProveedores = () => {
 
     const fetchProveedores = useCallback(async () => {
         try {
-            const response = await axios.get('http://localhost:5000/proveedores/consulta');
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/proveedores/consulta`);
             setProveedores(response.data);
         } catch (error) {
             console.error('Error al obtener los proveedores', error);
@@ -100,7 +100,7 @@ const GestionProveedores = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    await axios.patch(`http://localhost:5000/proveedores/${proveedor.id}`, {
+                    await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/proveedores/${proveedor.id}`, {
                         estado: 'inactivo'
                     });
                     fetchProveedores();
@@ -126,7 +126,7 @@ const GestionProveedores = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    await axios.patch(`http://localhost:5000/proveedores/${proveedor.id}`, {
+                    await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/proveedores/${proveedor.id}`, {
                         estado: 'activo'
                     });
                     fetchProveedores();

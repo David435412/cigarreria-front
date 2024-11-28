@@ -29,7 +29,7 @@ const GestionProductos = () => {
     // Obtener los productos de la API
     const fetchProductos = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/productos/consulta');
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/productos/consulta`);
             setProductos(response.data);
         } catch (error) {
             console.error('Error al obtener los productos', error);
@@ -64,7 +64,7 @@ const GestionProductos = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    await axios.put(`http://localhost:5000/productos/estado/${producto._id}`, { ...producto, estado: 'inactivo' });
+                    await axios.put(`${process.env.REACT_APP_BACKEND_URL}/productos/estado/${producto._id}`, { ...producto, estado: 'inactivo' });
                     fetchProductos();
                     Swal.fire({
                         title: 'Éxito',
@@ -109,7 +109,7 @@ const GestionProductos = () => {
     // Actualiza el stock en la base de datos
     const actualizarStock = async (id, nuevaCantidad) => {
         try {
-            await axios.put(`http://localhost:5000/productos/stock/${id}`, { cantidad: nuevaCantidad });
+            await axios.put(`${process.env.REACT_APP_BACKEND_URL}/productos/stock/${id}`, { cantidad: nuevaCantidad });
             fetchProductos();
             Swal.fire('Actualizado', 'El stock ha sido actualizado exitosamente', 'success');
         } catch (error) {

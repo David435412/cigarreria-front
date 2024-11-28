@@ -16,7 +16,7 @@ const ProveedoresInactivos = () => {
     // Obtener los proveedores inactivos desde la API
     const fetchProveedoresInactivos = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/proveedores');
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/proveedores`);
             const proveedoresInactivos = response.data.filter(proveedor => proveedor.estado === 'inactivo');
             setProveedores(proveedoresInactivos);
         } catch (error) {
@@ -44,7 +44,7 @@ const ProveedoresInactivos = () => {
         }).then(async (result) => {
             if (result.isConfirmed) {
                 try {
-                    await axios.put(`http://localhost:5000/proveedores/${proveedor.id}`, { ...proveedor, estado: 'activo' });
+                    await axios.put(`${process.env.REACT_APP_BACKEND_URL}/proveedores/${proveedor.id}`, { ...proveedor, estado: 'activo' });
                     fetchProveedoresInactivos();
                     setAlertMessage('Proveedor activado exitosamente.');
                 } catch (error) {

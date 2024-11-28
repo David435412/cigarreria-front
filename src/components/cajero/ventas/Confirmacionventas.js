@@ -56,7 +56,7 @@ const ConfirmacionVenta = () => {
     
         try {
             // Registrar la venta con el idVenta
-            await axios.post('http://localhost:5000/ventas', venta);
+            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/ventas`, venta);
     
             localStorage.removeItem('productosSeleccionados');
     

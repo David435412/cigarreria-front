@@ -28,8 +28,8 @@ const Inicio = () => {
     useEffect(() => {
         const fetchDatos = async () => {
             try {
-                const productosResponse = await axios.get('http://localhost:5000/productos/consulta');
-                const pedidosResponse = await axios.get('http://localhost:5000/pedidos/consulta');
+                const productosResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/productos/consulta`);
+                const pedidosResponse = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/pedidos/consulta`);
 
                 const productosActivos = productosResponse.data.filter(producto => producto.estado === 'activo');
                 setProductos(productosActivos);

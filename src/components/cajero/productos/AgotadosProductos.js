@@ -12,7 +12,7 @@ const ProductosAgotados = () => {
     // Obtener los productos de la API
     const fetchProductos = async () => {
         try {
-            const response = await axios.get('http://localhost:5000/productos');
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/productos`);
             // Filtra productos cuyo stock es cero
             const agotados = response.data.filter(producto => producto.cantidad === 0);
             setProductos(agotados);

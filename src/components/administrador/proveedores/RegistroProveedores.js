@@ -21,7 +21,7 @@ const RegistroProveedor = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:5000/proveedores', formData);
+            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/proveedores`, formData);
             
             // SweetAlert para confirmar el registro exitoso
             Swal.fire({

@@ -18,7 +18,7 @@ const PedidosAdmin = () => {
   useEffect(() => {
     const fetchPedidos = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/pedidos/consulta');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/pedidos/consulta`);
         setPedidos(response.data);
       } catch (error) {
         console.error('Error al obtener los pedidos:', error);
@@ -58,7 +58,7 @@ const PedidosAdmin = () => {
     setLoading(true);
   
     try {
-        await axios.patch(`http://localhost:5000/pedidos/${pedidoAConfirmar.id}`, { estadoPedido: 'entregado' });
+        await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/pedidos/${pedidoAConfirmar.id}`, { estadoPedido: 'entregado' });
   
         const pedidosActualizados = pedidos.map(pedido =>
             pedido.id === pedidoAConfirmar.id ? { ...pedido, estadoPedido: 'entregado' } : pedido

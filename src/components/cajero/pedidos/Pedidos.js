@@ -22,7 +22,7 @@ const PedidosCajero = () => {
   useEffect(() => {
     const fetchPedidos = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/pedidos/consulta');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/pedidos/consulta`);
         const pedidosPendientes = response.data.filter(pedido => pedido.estadoPedido === 'pendiente');
         setPedidos(pedidosPendientes);
       } catch (error) {
@@ -33,7 +33,7 @@ const PedidosCajero = () => {
     const fetchDomiciliarios = async () => {
       try {
         // Asegúrate de que la URL sea la correcta y que el servidor esté en funcionamiento
-        const response = await axios.get('http://localhost:5000/usuarios/domiciliario?rol=domiciliario');
+        const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/usuarios/domiciliario?rol=domiciliario`);
         setDomiciliarios(response.data);
       } catch (error) {
         console.error('Error al obtener los domiciliarios:', error);
@@ -120,7 +120,7 @@ const lastPage = () => {
     try {
       const domiciliario = domiciliarios.find(dom => dom._id === domiciliarioId);
   
-      const response = await axios.put(`http://localhost:5000/pedidos/${pedido._id}`, {
+      const response = await axios.put(`${process.env.REACT_APP_BACKEND_URL}/pedidos/${pedido._id}`, {
         asignado: domiciliarioId, // Solo se pasa el ID del domiciliario
       });
   

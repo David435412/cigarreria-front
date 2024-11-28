@@ -36,7 +36,7 @@ const RegistroProducto = () => {
         // Obtener la lista de proveedores desde la API
         const fetchProveedores = async () => {
             try {
-                const response = await axios.get('http://localhost:5000/proveedores/consulta');
+                const response = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/proveedores/consulta`);
                 setProveedores(response.data);
             } catch (error) {
                 console.error('Error al obtener los proveedores', error);
@@ -59,7 +59,7 @@ const RegistroProducto = () => {
         console.log('Datos del formulario:', formData);
 
         try {
-            await axios.post('http://localhost:5000/productos', formData);
+            await axios.post(`${process.env.REACT_APP_BACKEND_URL}/productos`, formData);
 
             Swal.fire({
                 title: 'Éxito',

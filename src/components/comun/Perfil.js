@@ -110,7 +110,7 @@ const Profile = () => {
         }
     
         try {
-            await axios.put(`http://localhost:5000/usuarios/loggeado/${userId}`, editedData);
+            await axios.put(`${process.env.REACT_APP_BACKEND_URL}/usuarios/loggeado/${userId}`, editedData);
     
             localStorage.setItem('name', editedData.nombre);
             localStorage.setItem('username', editedData.nombreUsuario);
@@ -193,7 +193,7 @@ const Profile = () => {
             const cifradaCurrentPassword = encriptarContrasena(currentPassword);
     
             try {
-                const response = await axios.post(`http://localhost:5000/usuarios/${userId}/verificar-contrasena`, {
+                const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/usuarios/${userId}/verificar-contrasena`, {
                     contrasenaActual: cifradaCurrentPassword
                 });
     
@@ -220,7 +220,7 @@ const Profile = () => {
                     if (newPassword) {
                         const cifradaNewPassword = encriptarContrasena(newPassword);
     
-                        await axios.put(`http://localhost:5000/usuarios/${userId}/cambiar-contrasena`, {
+                        await axios.put(`${process.env.REACT_APP_BACKEND_URL}/usuarios/${userId}/cambiar-contrasena`, {
                             nuevaContrasena: cifradaNewPassword
                         });
     
