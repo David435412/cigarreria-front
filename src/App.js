@@ -86,8 +86,7 @@ const App = () => {
         {showNavBarFooter && <NavBarComponent />}
         <main className="flex-grow mt-12">
           <Routes>
-            <Route path="/" element={<Inicio />} />
-            <Route path="/Inicio" element={<Inicio />} />
+            <Route path="/" element={<Inicio />} />            
             <Route path="/DetalleProductoSinLoggear" element={<DetalleProductoSinLoggear />} />
             <Route path="/pedidos-a" element={<PedidosAntes />} />
             <Route path="/carrito-a" element={<CartAntes />} />
