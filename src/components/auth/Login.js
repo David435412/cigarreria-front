@@ -29,7 +29,7 @@ const Login = () => {
         try {
             const contrasenaEncriptada = encriptarContrasena(formData.contrasena);
 
-            const response = await axios.post(`https://cigarreria-back-production.up.railway.app/usuarios/login`, {
+            const response = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/usuarios/login`, {
                 correo: formData.correo,
                 contrasena: contrasenaEncriptada
             });
