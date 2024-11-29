@@ -12,7 +12,7 @@ const categorias = [
     { nombre: 'Helados', icono: <FaIceCream /> },
     { nombre: 'Bebidas', icono: <FaBeer /> },
     { nombre: 'Lacteos', icono: <FaCheese /> },
-    { nombre: 'Panaderia', icono: <FaBreadSlice /> } // Cambiado "Panadería" por "Despensa"
+    { nombre: 'Panadería', icono: <FaBreadSlice /> } // Cambiado "Panadería" por "Despensa"
 ];
 
 const GestionProductos = () => {
