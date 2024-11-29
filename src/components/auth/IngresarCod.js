@@ -132,7 +132,7 @@ const VerificarCodigo = () => {
             </div>
             <div className="relative z-10 w-full max-w-md p-6 mx-auto">
                 <div className="text-center mb-6">
-                    <a href="/inicio" className="text-4xl font-bold text-gray-300 hover:text-gray-100 transition-colors">
+                    <a href="/" className="text-4xl font-bold text-gray-300 hover:text-gray-100 transition-colors">
                         Colonial
                     </a>
                 </div>

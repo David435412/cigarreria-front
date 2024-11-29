@@ -117,6 +117,7 @@ const RegistroEmpleado = () => {
                         Registro de Empleado
                     </h1>
                     <form className="space-y-6" onSubmit={handleSubmit}>
+                    <div className= "grid grid-cols-2 gap-5">
                         <div>
                             <label htmlFor="nombre" className="block mb-2 text-sm font-medium text-gray-900">
                                 Nombre
@@ -248,6 +249,7 @@ const RegistroEmpleado = () => {
                                 <option value="cajero">Cajero</option>
                                 <option value="domiciliario">Domiciliario</option>
                           </select>
+                        </div>
                         </div>
                         <button
                             type="submit"

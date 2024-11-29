@@ -50,52 +50,64 @@ const PedidosAdmin = () => {
     });
   };
     
-  const [loading, setLoading] = useState(false);
 
-  const confirmarEntrega = useCallback(async () => {
-    if (!pedidoAConfirmar || loading) return;
-  
-    setLoading(true);
-  
-    try {
-        await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/pedidos/${pedidoAConfirmar.id}`, { estadoPedido: 'entregado' });
-  
-        const pedidosActualizados = pedidos.map(pedido =>
-            pedido.id === pedidoAConfirmar.id ? { ...pedido, estadoPedido: 'entregado' } : pedido
-        );
-  
-        console.log("Pedidos actualizados:", pedidosActualizados); // Verificar aquí
-  
-        setPedidos(pedidosActualizados);
-        setPedidoAConfirmar(null);
-  
+  const confirmarEntrega = async () => {
+    if (!pedidoAConfirmar) {
         Swal.fire({
-            title: 'Pedido Marcado',
-            text: `El pedido de "${pedidoAConfirmar.nombre}" ha sido marcado como entregado.`,
-            icon: 'success',
-            timer: 2000,
-            showConfirmButton: false,
+            title: 'Error',
+            text: 'No se ha seleccionado un pedido para confirmar.',
+            icon: 'error',
+            confirmButtonText: 'OK'
         });
-  
+        return;
+    }
+
+    try {
+        // Actualizar el estado del pedido en el servidor
+        const response = await axios.patch(`${process.env.REACT_APP_BACKEND_URL}/pedidos/estadoPedido/${pedidoAConfirmar._id}`, {
+            estadoPedido: 'entregado'
+        });
+
+        // Actualizar el estado localmente
+        setPedidos(pedidos.map(pedido =>
+            pedido._id === pedidoAConfirmar._id
+                ? { ...pedido, estadoPedido: 'entregado' }
+                : pedido
+        ));
+
+        // Limpiar selección
+        setPedidoAConfirmar(null);
+
+        // Mostrar alerta de éxito
+        Swal.fire({
+            title: 'Pedido entregado',
+            text: 'El estado del pedido ha sido actualizado a "entregado".',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+
+        // Enviar correo de confirmación usando EmailJS
         await emailjs.send('service_vlpu06s', 'template_2lgkzzq', {
             to_correo: pedidoAConfirmar.correo,
             customer_name: pedidoAConfirmar.nombre,
-            delivery_date: formatearFecha(new Date()),
-            products: pedidoAConfirmar.productos.map(p => `${p.nombre} - ${p.precio} x ${p.cantidad}`).join(" --- "),
+            delivery_date: formatFecha(new Date()),
+            products: pedidoAConfirmar.productos
+                .map(p => `${p.nombre} - ${p.precio} x ${p.cantidad}`)
+                .join(" --- "),
             total: calcularTotal(pedidoAConfirmar.productos)
         }, 'JS01zy1f3DQ02Ojb0');
-  
+
     } catch (error) {
-        console.error('Error al confirmar la entrega:', error);
+        console.error('Error al actualizar el estado del pedido:', error);
+
         Swal.fire({
             title: 'Error',
-            text: 'No se pudo marcar el pedido como entregado.',
-            icon: 'error'
+            text: 'Hubo un problema al actualizar el estado del pedido.',
+            icon: 'error',
+            confirmButtonText: 'OK'
         });
-    } finally {
-        setLoading(false);
     }
-  }, [pedidoAConfirmar, loading, pedidos]);
+};
         
 
   const mostrarDetalles = (pedido) => {
@@ -159,7 +171,7 @@ const PedidosAdmin = () => {
             onClick={() => mostrarDetalles(row.original)}
             className={`bg-blue-500 text-white py-1 px-2 rounded hover:bg-blue-600 ${pedidoSeleccionado && pedidoSeleccionado._id === row.original._id ? 'bg-blue-600' : ''}`}
           >
-            {pedidoSeleccionado && pedidoSeleccionado.id === row.original._id ? 'Ocultar Detalles' : 'Detalles'}
+            {pedidoSeleccionado && pedidoSeleccionado._id === row.original._id ? 'Ocultar Detalles' : 'Detalles'}
           </button>
           {row.original.estadoPedido === 'pendiente' && (
             <button
