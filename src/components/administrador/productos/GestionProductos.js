@@ -14,7 +14,7 @@ const categorias = [
     { nombre: 'Helados', icono: <FaIceCream /> },
     { nombre: 'Bebidas', icono: <FaBeer /> },
     { nombre: 'Lacteos', icono: <FaCheese /> },
-    { nombre: 'Despensa', icono: <FaBreadSlice /> }
+    { nombre: 'Panadería', icono: <FaBreadSlice /> }
 ];
 
 const GestionProductos = () => {

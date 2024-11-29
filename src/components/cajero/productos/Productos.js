@@ -8,7 +8,7 @@ const categorias = [
     { nombre: 'Confitería', icono: <FaCandyCane /> },
     { nombre: 'Enlatados', icono: <FaBox /> },
     { nombre: 'Aseo', icono: <FaSoap /> },
-    { nombre: 'Medicamentos', icono: <FaPills /> },
+    { nombre: 'Drogas', icono: <FaPills /> },
     { nombre: 'Helados', icono: <FaIceCream /> },
     { nombre: 'Bebidas', icono: <FaBeer /> },
     { nombre: 'Lacteos', icono: <FaCheese /> },

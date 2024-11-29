@@ -10,7 +10,7 @@ const categorias = [
     'Confitería',
     'Enlatados',
     'Aseo',
-    'Medicamentos',
+    'Drogas',
     'Helados',
     'Bebidas',
     'Lacteos',
