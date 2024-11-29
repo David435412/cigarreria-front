@@ -68,25 +68,25 @@ const App = () => {
   const LocationBasedLayout = () => {
     const location = useLocation();
     const showNavBarFooter = !['/login', '/registro-cliente', '/recuperacion_contra', '/ingresar_codigo'].includes(location.pathname);
-
+  
     let NavBarComponent = Header; // Valor por defecto
-
+  
     if (role === 'administrador') {
       NavBarComponent = NavBarAdmin;
-    } else if (role === 'cliente'){
+    } else if (role === 'cliente') {
       NavBarComponent = NavBarCliente;
-    } else if (role === 'cajero'){
+    } else if (role === 'cajero') {
       NavBarComponent = NavBarCajero;
-    } else if (role === 'domiciliario'){
+    } else if (role === 'domiciliario') {
       NavBarComponent = NavBarDomiciliario;
     }
-
+  
     return (
       <div className="flex flex-col min-h-screen">
         {showNavBarFooter && <NavBarComponent />}
-        <main className="flex-grow mt-12">
+        <main className={`flex-grow ${showNavBarFooter ? 'mt-12' : ''}`}>
           <Routes>
-            <Route path="/" element={<Inicio />} />            
+            <Route path="/" element={<Inicio />} />
             <Route path="/DetalleProductoSinLoggear" element={<DetalleProductoSinLoggear />} />
             <Route path="/pedidos-a" element={<PedidosAntes />} />
             <Route path="/carrito-a" element={<CartAntes />} />
@@ -143,6 +143,7 @@ const App = () => {
       </div>
     );
   };
+  
 
   return (
     <LocationBasedLayout />
