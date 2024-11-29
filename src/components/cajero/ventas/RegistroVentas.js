@@ -9,11 +9,11 @@ const categorias = [
     { nombre: 'Confitería', icono: <FaCandyCane /> },
     { nombre: 'Enlatados', icono: <FaBox /> },
     { nombre: 'Aseo', icono: <FaSoap /> },
-    { nombre: 'Drogas', icono: <FaPills /> },
+    { nombre: 'Medicamentos', icono: <FaPills /> },
     { nombre: 'Helados', icono: <FaIceCream /> },
     { nombre: 'Bebidas', icono: <FaBeer /> },
     { nombre: 'Lacteos', icono: <FaCheese /> },
-    { nombre: 'Despensa', icono: <FaBreadSlice /> }
+    { nombre: 'Panaderia', icono: <FaBreadSlice /> }
 ];
 
 const RegistroVentas = () => {
