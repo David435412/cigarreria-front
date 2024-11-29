@@ -4,6 +4,8 @@ import { FaCheckCircle } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import emailjs from 'emailjs-com';
 import { useTable, usePagination } from 'react-table';
+import { format } from 'date-fns'; // Importar la función format de date-fns
+
 
 const PedidosAdmin = () => {
   const [pedidos, setPedidos] = useState([]);
