@@ -76,6 +76,7 @@ const Login = () => {
                         }).then(() => navigate('/'));
                         break;
                 }
+                window.location.reload();
             });
         } catch (error) {
             console.error('Error al iniciar sesión', error);
