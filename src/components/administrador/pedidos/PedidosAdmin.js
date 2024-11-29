@@ -14,6 +14,9 @@ const PedidosAdmin = () => {
   const [filtroFecha, setFiltroFecha] = useState('');
   const [filtroTotal, setFiltroTotal] = useState('');
 
+  const formatFecha = (fecha) => {
+    return format(new Date(fecha), 'dd/MM/yyyy HH:mm:ss');
+};
 
   useEffect(() => {
     const fetchPedidos = async () => {
